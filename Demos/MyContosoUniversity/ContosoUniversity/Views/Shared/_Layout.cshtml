@@ -32,11 +32,22 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Students", "Index", "Student")</li>
-                    <li>@Html.ActionLink("Courses", "Index", "Course")</li>
-                    <li>@Html.ActionLink("Instructors", "Index", "Instructor")</li>
-                    <li>@Html.ActionLink("Departments", "Index", "Department")</li>
+
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Students", "Index", "Student")</li>
+                    }
+                        <li>@Html.ActionLink("Courses", "Index", "Course")</li>
+                    @if (Request.IsAuthenticated)
+                    {   
+                        <li>@Html.ActionLink("Instructors", "Index", "Instructor")</li>
+                        <li>@Html.ActionLink("Departments", "Index", "Department")</li>
+                    }
+                    
+
                 </ul>
+                @Html.Partial("_LoginPartial")
+
             </div>
         </div>
     </div>

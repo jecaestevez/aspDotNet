@@ -12,11 +12,13 @@ using System.Data.Entity.Infrastructure;
 
 namespace ContosoUniversity.Controllers
 {
+    [Authorize]
     public class CourseController : Controller
     {
         private SchoolContext db = new SchoolContext();
 
         // GET: Course
+        [AllowAnonymous]
         public ActionResult Index(int? SelectedDepartment)
         {
             var departments = db.Departments.OrderBy(q => q.Name).ToList();
@@ -32,6 +34,7 @@ namespace ContosoUniversity.Controllers
         }
 
         // GET: Course/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
